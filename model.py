@@ -8,10 +8,12 @@ sns.set()
 ##################### LOAD THE DATA #############################
 df = pd.read_csv('iris-with-answers.csv')
 df1 = pd.read_csv('iris-with-answers.csv')
-df
+
+# Drop rows with missing or empty species values
+df = df.dropna(subset=['species'])
+df = df[df['species'].str.strip() != '']
 
 df['species'] = df.species.map({'setosa':0,'virginica':1,'versicolor':2})
-df
 
 ################### VISUALIZATION #############################
 df.corr()
